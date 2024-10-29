@@ -50,7 +50,7 @@ class Box():
         Returns:
             Optional[Question]: The next priority question or None if no priority question is available.
         """
-        sorted_questions = sorted(self._questions, key=lambda q: q.last_asked, reverse=True)
+        sorted_questions = sorted(self._questions, key=lambda q: q.last_asked)
         now = datetime.now()
 
         for q in sorted_questions:

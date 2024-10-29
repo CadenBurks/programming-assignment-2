@@ -43,7 +43,7 @@ class TrueFalse(Question):
         elif answer == "false" or answer == "f":
             user_answer = False
         else:
-            raise ValueError("Answer must be 'True' or 'False'.")
+            raise ValueError("Invalid input: Answer must be 'True' or 'False'.")
         
         if user_answer == self._answer:
             return True
