@@ -29,7 +29,7 @@ def load_questions(file_path: Path) -> List[Dict[str, Any]]:
             questions = json.load(file)
         return questions
     except FileNotFoundError:
-        print(f"ERROR: '{file_path}' was not found.")
+        print(f"Error: Question file not found at {file_path}")
         raise
     except json.JSONDecodeError:
         print("JSON ERROR")
@@ -43,7 +43,7 @@ def run_quiz(name: str, questions: List[Dict[str, Any]]) -> None:
         name (str): The name of the quiz taker.
         questions (List[Dict[str, Any]]): A list of dictionaries containing question data.
     """
-    print(f"Welcome to QuizMe {name}!")
+    print(f"Welcome, {name}! Let's start your adaptive quiz session.")
     controller = ARController(questions)
     controller.start()
 
@@ -58,9 +58,8 @@ def main() -> None:
     try:
         questions = load_questions(Path(args.questions))
         run_quiz(args.name, questions)
-    except (FileNotFoundError, json.JSONDecodeError) as e:
-        print(f"ERROR: {e}")
-        print(f"Error name: {type(e).__name__}")
+    except (FileNotFoundError, json.JSONDecodeError):
+        print("Exiting due to error in loading questions.")
 
 
 if __name__ == "__main__":

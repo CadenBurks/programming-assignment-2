@@ -23,18 +23,16 @@ class ARController():
         for dictionary in question_data:
             try:
                 if dictionary["type"] == "shortanswer":
-                    instance = ShortAnswer(dictionary.get('question'), dictionary.get('correct_answer'))
+                    instance = ShortAnswer(dictionary["question"], dictionary["correct_answer"])
                     self._box_manager.add_new_question(instance)
                 elif dictionary["type"] == "truefalse":
-                    instance = TrueFalse(dictionary.get('question'), dictionary.get('correct_answer'), dictionary.get('explanation'))
+                    instance = TrueFalse(dictionary["question"], dictionary["correct_answer"], dictionary["explanation"])
                     self._box_manager.add_new_question(instance)
                 else:
-                    print("Question type not supported.")
-                    continue
-        
-            except KeyError:
-                print("Key Error")
-                continue
+                    print("Unsupported question type: invalid. Skipping this question.")
+            except KeyError as e:
+                print(f"Missing required field for question: {e}. Skipping this question.")
+            
     
     def start(self) -> None:
         """Run the interactive adaptive review session."""
