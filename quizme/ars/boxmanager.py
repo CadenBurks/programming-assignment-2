@@ -1,6 +1,6 @@
 """Module for managing boxes in the Adaptive Review System."""
-from box import Box
-from qtype.question import Question
+from .box import Box
+from .qtype.question import Question
 from datetime import timedelta, datetime
 
 class BoxManager():

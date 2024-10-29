@@ -1,6 +1,6 @@
 """Module for the ShortAnswer quiz item class in the Adaptive Review System."""
 import re
-from question import Question
+from .question import Question
 
 class ShortAnswer(Question):
     """A quiz item representing a short answer question."""

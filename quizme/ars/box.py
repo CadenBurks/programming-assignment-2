@@ -1,5 +1,5 @@
 """Module for the Box class in the Adaptive Review System."""
-from qtype.question import Question
+from .qtype.question import Question
 from datetime import timedelta, datetime
 
 class Box():
@@ -50,7 +50,7 @@ class Box():
         Returns:
             Optional[Question]: The next priority question or None if no priority question is available.
         """
-        sorted_questions = sorted(self._questions, key=lambda q: q.last_asked)
+        sorted_questions = sorted(self._questions, key=lambda q: q.last_asked, reverse=True)
         now = datetime.now()
 
         for q in sorted_questions:
@@ -64,6 +64,6 @@ class Box():
 
     def __str__(self):
         """Return a string representation of the Box object."""
-        return f"The box {self._name} has {self.__len__()} questions."
+        return f"Box(name='{self._name}', questions_count={len(self._questions)})"
     
    

@@ -1,5 +1,5 @@
 """Module for the TrueFalse quiz item class in the Adaptive Review System."""
-from question import Question
+from .question import Question
 
 class TrueFalse(Question):
     """Class for a True/False quiz item."""
@@ -57,6 +57,9 @@ class TrueFalse(Question):
             str: Feedback message for an incorrect answer, including the explanation if provided.
         """
         if self._explanation != "":
-            return "Incorrect." + " " + self._explanation
+            return "Incorrect. " + self._explanation
+        else:
+            return "Incorrect. "
+
         
 

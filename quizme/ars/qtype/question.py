@@ -16,7 +16,7 @@ class Question(ABC):
         self._question = question
         self._answer = answer
         self._id = uuid.uuid4()
-        self._last_asked = datetime.now()
+        self._last_asked = datetime.min
 
     @property
     def id(self) -> uuid.UUID:
@@ -65,7 +65,7 @@ class Question(ABC):
         """
         pass
     
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other) -> bool:
         """
         Define equality based on the question's unique id.
 
@@ -75,7 +75,7 @@ class Question(ABC):
         Returns:
             bool: True if the other object is a Question with the same id, False otherwise.
         """
-        if isinstance(object, Question) and object.id == self.id:
+        if isinstance(other, Question) and other.id == self.id:
             return True
         else:
             return False
