@@ -26,15 +26,15 @@ def load_questions(file_path: Path) -> List[Dict[str, Any]]:
         json.JSONDecodeError: If the file contains invalid JSON.
     """
     try:
-        with open(file_path, 'r') as file:
+        with file_path.open('r') as file:
             questions = json.load(file)
         return questions
-    except FileNotFoundError:
+    except FileNotFoundError as e:
         print(f"Error: Question file not found at {file_path}")
-        raise
-    except json.JSONDecodeError:
+        raise e
+    except json.JSONDecodeError as e:
         print(f"Error: Invalid JSON in question file {file_path}")
-        raise
+        raise e
 
 def run_quiz(name: str, questions: List[Dict[str, Any]]) -> None:
     """
