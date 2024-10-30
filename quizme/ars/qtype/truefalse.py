@@ -24,7 +24,7 @@ class TrueFalse(Question):
         super().ask()
         return self._question + " (True/False)"
     
-    def check_answer(self, answer: str) -> bool:
+    def check_answer(self, answer) -> bool:
         """Check if the provided answer is correct.
             
         Args:
@@ -36,19 +36,16 @@ class TrueFalse(Question):
         Raises:
             ValueError: If the answer is not 'True' or 'False'.
         """
-        answer = (answer.strip()).lower()
+        norm_answer = answer.strip().lower()
 
-        if answer == "true" or answer == "t":
+        if norm_answer == "true" or norm_answer == "t":
             user_answer = True
-        elif answer == "false" or answer == "f":
+        elif norm_answer == "false" or norm_answer == "f":
             user_answer = False
         else:
             raise ValueError("Invalid input: Answer must be 'True' or 'False'.")
         
-        if user_answer == self._answer:
-            return True
-        else:
-            return False
+        return user_answer == self._answer
         
     def incorrect_feedback(self) -> str:
         """Return feedback for an incorrect answer.

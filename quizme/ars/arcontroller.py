@@ -46,12 +46,23 @@ class ARController():
             user_answer = input("Answer: ")
             if user_answer == "q":
                 break
-            if q.check_answer(user_answer):
-                print("Correct!")
-                self._box_manager.move_question(q, True)
+            if isinstance(q, TrueFalse):
+                try:
+                    if q.check_answer(user_answer):
+                        print("Correct!")
+                        self._box_manager.move_question(q, True)
+                    else:
+                        print(q.incorrect_feedback())
+                        self._box_manager.move_question(q, False)
+                except ValueError:
+                    print("Invalid input: Answer must be 'True' or 'False'.")
             else:
-                print(q.incorrect_feedback())
-                self._box_manager.move_question(q, False)
+                if q.check_answer(user_answer):
+                        print("Correct!")
+                        self._box_manager.move_question(q, True)
+                else:
+                    print(q.incorrect_feedback())
+                    self._box_manager.move_question(q, False)
         print("Thank you, goodbye!")            
 
 

@@ -9,6 +9,7 @@ from typing import List, Dict, Any
 import json
 import argparse
 from ars.arcontroller import ARController
+import data
 
 def load_questions(file_path: Path) -> List[Dict[str, Any]]:
     """
@@ -32,7 +33,7 @@ def load_questions(file_path: Path) -> List[Dict[str, Any]]:
         print(f"Error: Question file not found at {file_path}")
         raise
     except json.JSONDecodeError:
-        print("JSON ERROR")
+        print(f"Error: Invalid JSON in question file {file_path}")
         raise
 
 def run_quiz(name: str, questions: List[Dict[str, Any]]) -> None:
