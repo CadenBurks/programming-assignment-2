@@ -9,7 +9,6 @@ from typing import List, Dict, Any
 import json
 import argparse
 from ars.arcontroller import ARController
-import data
 
 def load_questions(file_path: Path) -> List[Dict[str, Any]]:
     """
